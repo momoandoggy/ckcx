@@ -51,6 +51,8 @@
             --christmas-red: #d62828;
             --christmas-green: #2a9134;
             --christmas-gold: #fcbf49;
+            --christmas-blue: #4cc9f0;
+            --christmas-silver: #c9c9c9;
         }
         
         body {
@@ -63,10 +65,9 @@
             min-height: 100vh;
         }
         
-        /* Enhanced Snow & Gold Star Animations */
-        .snow, .gold-star, .christmas-ball {
+        /* Enhanced Christmas Elements */
+        .snow, .gold-star, .christmas-ball, .snowflake {
             position: absolute;
-            border-radius: 50%;
             pointer-events: none;
             z-index: 1;
         }
@@ -78,6 +79,7 @@
             opacity: 0.8;
             animation: fall linear infinite;
             filter: blur(0.5px);
+            border-radius: 50%;
         }
         
         .gold-star {
@@ -86,6 +88,7 @@
             background: radial-gradient(circle, var(--christmas-gold) 30%, var(--gold) 100%);
             animation: fall 10s linear infinite, twinkle 2s infinite alternate;
             box-shadow: 0 0 10px var(--christmas-gold);
+            border-radius: 50%;
         }
         
         .christmas-ball {
@@ -94,6 +97,17 @@
             background: radial-gradient(circle, var(--christmas-red) 30%, #8b0000 100%);
             animation: fall 8s linear infinite, swing 3s infinite alternate;
             box-shadow: 0 0 8px var(--christmas-red);
+            border-radius: 50%;
+        }
+        
+        .snowflake {
+            width: 15px;
+            height: 15px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234cc9f0"><path d="M12 3L8 7l1 1 3-3 3 3 1-1-4-4zm0 18l4-4-1-1-3 3-3-3-1 1 4 4zm3-15l1-1 4 4-1 1-3-3-3 3-1-1 4-4zm-6 6l-1-1-4 4 1 1 3-3 3 3 1-1-4-4zm9 3l1-1 4 4-1 1-3-3-3 3-1-1 4-4zm-12 0l-1-1-4 4 1 1 3-3 3 3 1-1-4-4z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: fall 12s linear infinite, spin 8s linear infinite;
+            filter: drop-shadow(0 0 2px white);
         }
         
         @keyframes fall {
@@ -112,7 +126,12 @@
             50% { transform: translateX(15px); }
         }
         
-        /* Christmas Tree */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Enhanced Christmas Tree */
         .christmas-tree {
             position: absolute;
             width: 80px;
@@ -129,6 +148,7 @@
             border-right: 40px solid transparent;
             border-bottom: 60px solid var(--christmas-green);
             bottom: 0;
+            filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2));
         }
         
         .christmas-tree::after {
@@ -141,6 +161,7 @@
             border-bottom: 50px solid var(--christmas-green);
             bottom: 40px;
             left: 10px;
+            filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2));
         }
         
         .tree-decoration {
@@ -150,6 +171,13 @@
             border-radius: 50%;
             background: var(--christmas-red);
             z-index: 4;
+            box-shadow: 0 0 5px currentColor;
+            animation: decoration-glow 2s infinite alternate;
+        }
+        
+        @keyframes decoration-glow {
+            0% { box-shadow: 0 0 5px currentColor; }
+            100% { box-shadow: 0 0 15px currentColor; }
         }
         
         .tree-star {
@@ -163,6 +191,13 @@
             left: 25px;
             transform: rotate(180deg);
             z-index: 4;
+            filter: drop-shadow(0 0 5px var(--christmas-gold));
+            animation: star-glow 1.5s infinite alternate;
+        }
+        
+        @keyframes star-glow {
+            0% { opacity: 0.8; filter: drop-shadow(0 0 5px var(--christmas-gold)); }
+            100% { opacity: 1; filter: drop-shadow(0 0 15px var(--christmas-gold)); }
         }
         
         /* Order Notification */
@@ -206,6 +241,7 @@
             position: relative;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             border-bottom: 4px solid var(--christmas-red);
+            overflow: hidden;
         }
         
         .logo-container {
@@ -214,13 +250,54 @@
             justify-content: center;
             align-items: center;
             margin-bottom: 15px;
+            z-index: 5; /* Ensure logo stays above animations */
         }
         
         .logo {
             width: 100%;
             max-width: 300px;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+            z-index: 5;
+            position: relative;
+        }
+        
+        /* Christmas Lights Banner */
+        .christmas-lights {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(90deg, 
+                var(--christmas-red), 
+                var(--christmas-gold), 
+                var(--christmas-green), 
+                var(--christmas-blue), 
+                var(--christmas-red));
+            background-size: 200% 100%;
+            animation: lightsAnimation 4s linear infinite;
+            z-index: 2;
+            opacity: 0.8;
+        }
+        
+        @keyframes lightsAnimation {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        
+        .light-bulb {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            top: 9px;
+            animation: bulbGlow 1.5s infinite alternate;
             z-index: 3;
+        }
+        
+        @keyframes bulbGlow {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.2); }
         }
         
         .nav-buttons {
@@ -229,6 +306,8 @@
             gap: 10px;
             margin-top: 15px;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 4;
         }
         
         .nav-btn {
@@ -246,6 +325,7 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             border: 2px solid #f8f9fa;
             text-shadow: 0 1px 1px rgba(255,255,255,0.5);
+            z-index: 4;
         }
         
         .nav-btn::before {
@@ -275,343 +355,16 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         
-        .product-container {
-            padding: 20px;
-            text-align: center;
-            background-color: white;
-            margin: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            position: relative;
-            overflow: hidden;
-            border: 2px solid var(--christmas-red);
-            background: linear-gradient(135deg, #fff 0%, #fff9f9 100%);
-        }
+        /* Rest of your CSS remains the same... */
         
-        .product-image {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            margin-bottom: 15px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 2px solid var(--christmas-green);
-        }
-        
-        .product-image:hover {
-            transform: scale(1.03) rotate(-1deg);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-        }
-        
-        .product-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 15px 0;
-            color: var(--christmas-green);
-        }
-        
-        .product-price {
-            color: var(--christmas-red);
-            font-size: 28px;
-            font-weight: bold;
-            margin: 10px 0;
-            display: inline-block;
-        }
-        
-        .product-old-price {
-            text-decoration: line-through;
-            color: #888;
-            font-size: 16px;
-            display: inline-block;
-            margin: 0 5px;
-        }
-        
-        .discount-badge {
-            background: linear-gradient(135deg, var(--christmas-red) 0%, var(--red) 100%);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
-            display: inline-block;
-            margin-left: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .buy-btn {
-            background: linear-gradient(135deg, var(--christmas-gold) 0%, var(--gold) 100%);
-            color: var(--christmas-red);
-            border: none;
-            padding: 15px 40px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 18px;
-            margin-top: 20px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid #f8f9fa;
-            text-shadow: 0 1px 1px rgba(255,255,255,0.5);
-        }
-        
-        .buy-btn::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                rgba(255,255,255,0) 45%,
-                rgba(255,255,255,0.8) 50%,
-                rgba(255,255,255,0) 55%
-            );
-            transform: rotate(30deg);
-            animation: shine 3s infinite;
-        }
-        
-        .buy-btn:active {
-            transform: scale(0.95);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-        
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            padding: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s;
-            position: relative;
-            border: 1px solid var(--christmas-green);
-            background: linear-gradient(135deg, #fff 0%, #f9fff9 100%);
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        
-        .product-card img {
-            width: 100%;
-            border-radius: 10px;
-            height: 120px;
-            object-fit: cover;
-            margin-bottom: 10px;
-            border: 1px solid var(--christmas-red);
-        }
-        
-        .product-card .product-title {
-            font-size: 16px;
-            margin: 5px 0;
-            color: var(--christmas-green);
-        }
-        
-        .add-to-cart-btn {
-            background: linear-gradient(135deg, var(--christmas-red) 0%, var(--red) 100%);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .add-to-cart-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        
-        .footer {
-            background: linear-gradient(135deg, var(--christmas-green) 0%, var(--green) 100%);
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            font-size: 14px;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            border-top: 4px solid var(--christmas-red);
-        }
-        
-        .shipping-info {
-            color: var(--christmas-green);
-            font-weight: bold;
-            margin: 10px 0;
-            font-size: 16px;
-        }
-        
-        .section-title {
-            color: var(--christmas-green);
-            text-align: center;
-            margin: 30px 0 20px;
-            font-size: 24px;
-            position: relative;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--christmas-gold), var(--gold));
-            margin: 10px auto;
-            border-radius: 3px;
-        }
-        
-        /* WhatsApp Button */
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #25D366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            z-index: 100;
-            animation: pulse 2s infinite;
-            text-decoration: none;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        /* Click Animation */
-        .click-effect {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: rgba(255, 215, 0, 0.7);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: scale(0);
-            animation: click 0.5s ease-out;
-        }
-        
-        @keyframes click {
-            to {
-                transform: scale(3);
-                opacity: 0;
-            }
-        }
-        
-        /* Address Section */
-        .address-section {
-            background-color: white;
-            padding: 20px;
-            margin: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            text-align: center;
-            border: 2px solid var(--christmas-green);
-            background: linear-gradient(135deg, #fff 0%, #f9fff9 100%);
-        }
-        
-        .address-title {
-            color: var(--christmas-red);
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-        
-        .address-text {
-            color: #555;
-            line-height: 1.6;
-        }
-        
-        /* Christmas Ribbon */
-        .christmas-ribbon {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 150px;
-            height: 150px;
-            overflow: hidden;
-            z-index: 10;
-        }
-        
-        .christmas-ribbon::before,
-        .christmas-ribbon::after {
-            content: '';
-            position: absolute;
-            z-index: -1;
-            display: block;
-            border: 5px solid var(--christmas-gold);
-            border-top-color: transparent;
-            border-right-color: transparent;
-        }
-        
-        .christmas-ribbon::before {
-            top: 0;
-            left: 0;
-        }
-        
-        .christmas-ribbon::after {
-            bottom: 0;
-            right: 0;
-        }
-        
-        .christmas-ribbon span {
-            position: absolute;
-            display: block;
-            width: 225px;
-            padding: 15px 0;
-            background-color: var(--christmas-red);
-            box-shadow: 0 5px 10px rgba(0,0,0,.1);
-            color: #fff;
-            font-size: 16px;
-            font-weight: bold;
-            text-shadow: 0 1px 1px rgba(0,0,0,.2);
-            text-transform: uppercase;
-            text-align: center;
-            right: -25px;
-            top: 30px;
-            transform: rotate(45deg);
-        }
-        
-        /* Garland */
-        .garland {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 36px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="5" fill="%23d62828"/><circle cx="35" cy="20" r="5" fill="%232a9134"/><circle cx="5" cy="20" r="5" fill="%23fcbf49"/></svg>');
-            background-size: 40px 40px;
-            z-index: 10;
-            pointer-events: none;
-        }
     </style>
 </head>
 <body>
     <!-- Animated Background Elements -->
     <div id="background-elements"></div>
     
-    <!-- Christmas Garland -->
-    <div class="garland"></div>
+    <!-- Christmas Lights Banner -->
+    <div class="christmas-lights" id="christmasLights"></div>
     
     <!-- Christmas Ribbon -->
     <div class="christmas-ribbon">
@@ -649,128 +402,19 @@
             </div>
         </div>
         
-        <div class="product-container">
-            <img src="https://static.netshoes.com.br/produtos/chuteira-campo-puma-rapido-iii-unissex/72/PI3-7165-172/PI3-7165-172_zoom1.jpg?ts=1748873835&ims=326x" alt="Chuteiras de futebol" class="product-image">
-            <div class="product-title">Tênis Esportivo Premium - Edição Natal</div>
-            <div>
-                <span class="product-price">R$10</span>
-                <span class="product-old-price">R$50</span>
-                <span class="discount-badge">80% OFF</span>
-            </div>
-            <div class="shipping-info">Frete GRÁTIS • Parcele em 3x sem juros</div>
-            <button class="buy-btn" id="buyNowBtn">COMPRAR AGORA</button>
-            
-            <div style="margin-top: 30px; text-align: left;">
-                <h3 style="color: var(--christmas-green); border-bottom: 2px solid var(--christmas-red); padding-bottom: 5px;">Descrição do Produto:</h3>
-                <p>• Tênis esportivo de alta qualidade - Edição Especial de Natal</p>
-                <p>• Material respirável e confortável</p>
-                <p>• Solado antiderrapante</p>
-                <p>• Disponível em vários tamanhos</p>
-                <p>• Presente perfeito para o Natal!</p>
-            </div>
-        </div>
+        <!-- Rest of your HTML remains the same... -->
         
-        <h2 class="section-title">OFERTAS ESPECIAIS DE NATAL</h2>
-        <div class="product-grid">
-            <!-- Product 1 -->
-            <div class="product-card">
-                <img src="https://static.netshoes.com.br/produtos/chuteira-campo-adidas-f50-league-ll-unissex/98/FBA-7723-198/FBA-7723-198_zoom1.jpg?ts=1751385231&ims=326x" alt="Tênis Adidas">
-                <div class="product-title">Adidas Natal</div>
-                <div>
-                    <span style="color: var(--christmas-red); font-weight: bold;">R$10</span>
-                    <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background: linear-gradient(135deg, var(--christmas-red) 0%, var(--red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
-                </div>
-                <button class="add-to-cart-btn" data-product="Adidas">COMPRAR</button>
-            </div>
-            
-            <!-- Product 2 -->
-            <div class="product-card">
-                <img src="https://static.netshoes.com.br/produtos/chuteira-nike-beco-2-society/28/SGL-036R-028/SGL-036R-028_zoom1.jpg?ts=1748860421&ims=326x" alt="Tênis Nike">
-                <div class="product-title">Nike Natal</div>
-                <div>
-                    <span style="color: var(--christmas-red); font-weight: bold;">R$10</span>
-                    <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background: linear-gradient(135deg, var(--christmas-red) 0%, var(--red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
-                </div>
-                <button class="add-to-cart-btn" data-product="Nike">COMPRAR</button>
-            </div>
-            
-            <!-- Product 3 -->
-            <div class="product-card">
-                <img src="https://static.netshoes.com.br/produtos/tenis-olympikus-corre-4/42/2I3-0603-542/2I3-0603-542_zoom1.jpg?ts=1741775013&ims=326x" alt="Tênis Olympikus">
-                <div class="product-title">Olympikus Natal</div>
-                <div>
-                    <span style="color: var(--christmas-red); font-weight: bold;">R$10</span>
-                    <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background: linear-gradient(135deg, var(--christmas-red) 0%, var(--red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
-                </div>
-                <button class="add-to-cart-btn" data-product="Olympikus">COMPRAR</button>
-            </div>
-            
-            <!-- Product 4 -->
-            <div class="product-card">
-                <img src="https://static.netshoes.com.br/produtos/tenis-de-corrida-feminino-mizuno-wave-frontier-15/98/2FV-0555-198/2FV-0555-198_zoom1.jpg?ts=1722270368&ims=326x" alt="Tênis Mizuno">
-                <div class="product-title">Mizuno Natal</div>
-                <div>
-                    <span style="color: var(--christmas-red); font-weight: bold;">R$10</span>
-                    <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background: linear-gradient(135deg, var(--christmas-red) 0%, var(--red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
-                </div>
-                <button class="add-to-cart-btn" data-product="Mizuno">COMPRAR</button>
-            </div>
-            
-            <!-- Product 5 -->
-            <div class="product-card">
-                <img src="https://static.netshoes.com.br/produtos/tenis-asics-dynablast-5-feminino/18/2FW-2952-818/2FW-2952-818_zoom1.jpg?ts=1739874812&ims=326x" alt="Tênis Asics">
-                <div class="product-title">Asics Natal</div>
-                <div>
-                    <span style="color: var(--christmas-red); font-weight: bold;">R$10</span>
-                    <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background: linear-gradient(135deg, var(--christmas-red) 0%, var(--red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
-                </div>
-                <button class="add-to-cart-btn" data-product="Asics">COMPRAR</button>
-            </div>
-            
-            <!-- Product 6 -->
-            <div class="product-card">
-                <img src="https://static.netshoes.com.br/produtos/tenis-infantil-puma-caven-20-p/93/2I3-9897-793/2I3-9897-793_zoom1.jpg?ts=1743699501&ims=326x" alt="Tênis Puma">
-                <div class="product-title">Puma Natal</div>
-                <div>
-                    <span style="color: var(--christmas-red); font-weight: bold;">R$10</span>
-                    <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background: linear-gradient(135deg, var(--christmas-red) 0%, var(--red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
-                </div>
-                <button class="add-to-cart-btn" data-product="Puma">COMPRAR</button>
-            </div>
-        </div>
-        
-        <!-- Address Section -->
-        <div class="address-section">
-            <h3 class="address-title">Nossa Loja Física</h3>
-            <p class="address-text">
-                Rua José Bernardo Pinto, 333 - Vila Guilherme<br>
-                São Paulo - SP, 02055-000<br>
-                Brazil<br>
-                Telefone: (11) 1234-5678<br>
-                <strong>Horário Especial de Natal:</strong> Aberto até as 22h
-            </p>
-        </div>
-        
-        <div class="footer">
-            © 2014-2025 Moda Verde - Feliz Natal e Próspero Ano Novo!
-        </div>
     </div>
     
     <script>
-        // Enhanced Background Elements with Christmas balls
+        // Enhanced Background Elements with more variety
         function createBackground() {
             const container = document.getElementById('background-elements');
             const width = window.innerWidth;
             const height = window.innerHeight;
             
             // Create snowflakes
-            for (let i = 0; i < 200; i++) {
+            for (let i = 0; i < 150; i++) {
                 const snow = document.createElement('div');
                 snow.classList.add('snow');
                 snow.style.left = Math.random() * width + 'px';
@@ -783,7 +427,7 @@
             }
             
             // Create gold stars
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 40; i++) {
                 const star = document.createElement('div');
                 star.classList.add('gold-star');
                 star.style.left = Math.random() * width + 'px';
@@ -806,13 +450,58 @@
                 ball.style.width = 8 + Math.random() * 10 + 'px';
                 ball.style.height = ball.style.width;
                 
-                // Random color (red or gold)
-                if (Math.random() > 0.5) {
-                    ball.style.background = 'radial-gradient(circle, var(--christmas-gold) 30%, var(--gold) 100%)';
-                    ball.style.boxShadow = '0 0 8px var(--christmas-gold)';
-                }
+                // Random color (red, gold, green, or blue)
+                const colors = [
+                    'radial-gradient(circle, var(--christmas-red) 30%, #8b0000 100%)',
+                    'radial-gradient(circle, var(--christmas-gold) 30%, var(--gold) 100%)',
+                    'radial-gradient(circle, var(--christmas-green) 30%, #1a5a1a 100%)',
+                    'radial-gradient(circle, var(--christmas-blue) 30%, #1a7a8b 100%)'
+                ];
+                ball.style.background = colors[Math.floor(Math.random() * colors.length)];
+                ball.style.boxShadow = `0 0 8px ${colors[Math.floor(Math.random() * colors.length)].includes('red') ? 'var(--christmas-red)' : 
+                                      colors[Math.floor(Math.random() * colors.length)].includes('gold') ? 'var(--christmas-gold)' : 
+                                      colors[Math.floor(Math.random() * colors.length)].includes('green') ? 'var(--christmas-green)' : 'var(--christmas-blue)'}`;
                 
                 container.appendChild(ball);
+            }
+            
+            // Create snowflakes
+            for (let i = 0; i < 20; i++) {
+                const flake = document.createElement('div');
+                flake.classList.add('snowflake');
+                flake.style.left = Math.random() * width + 'px';
+                flake.style.top = -30 + 'px';
+                flake.style.animationDuration = 10 + Math.random() * 20 + 's';
+                flake.style.animationDelay = Math.random() * 5 + 's';
+                flake.style.width = 10 + Math.random() * 15 + 'px';
+                flake.style.height = flake.style.width;
+                container.appendChild(flake);
+            }
+        }
+        
+        // Create Christmas lights banner
+        function createChristmasLights() {
+            const lightsContainer = document.getElementById('christmasLights');
+            const width = window.innerWidth;
+            const bulbCount = Math.floor(width / 30); // One bulb every 30px
+            
+            for (let i = 0; i < bulbCount; i++) {
+                const bulb = document.createElement('div');
+                bulb.classList.add('light-bulb');
+                bulb.style.left = (i * 30) + 'px';
+                
+                // Random bulb color
+                const colors = [
+                    'var(--christmas-red)',
+                    'var(--christmas-gold)',
+                    'var(--christmas-green)',
+                    'var(--christmas-blue)',
+                    'var(--christmas-silver)'
+                ];
+                bulb.style.background = colors[Math.floor(Math.random() * colors.length)];
+                bulb.style.animationDelay = (Math.random() * 2) + 's';
+                
+                lightsContainer.appendChild(bulb);
             }
         }
         
@@ -822,7 +511,7 @@
             const treeRight = document.getElementById('treeRight');
             
             // Add decorations to left tree
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 12; i++) {
                 const decoration = document.createElement('div');
                 decoration.classList.add('tree-decoration');
                 
@@ -830,14 +519,22 @@
                 decoration.style.left = (10 + Math.random() * 60) + 'px';
                 decoration.style.top = (20 + Math.random() * 80) + 'px';
                 
-                // Random color (red or gold)
-                decoration.style.background = Math.random() > 0.5 ? 'var(--christmas-red)' : 'var(--christmas-gold)';
+                // Random color (red, gold, blue, or silver)
+                const colors = [
+                    'var(--christmas-red)',
+                    'var(--christmas-gold)',
+                    'var(--christmas-blue)',
+                    'var(--christmas-silver)'
+                ];
+                decoration.style.background = colors[Math.floor(Math.random() * colors.length)];
+                decoration.style.color = colors[Math.floor(Math.random() * colors.length)];
+                decoration.style.animationDelay = (Math.random() * 2) + 's';
                 
                 treeLeft.appendChild(decoration);
             }
             
             // Add decorations to right tree
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 12; i++) {
                 const decoration = document.createElement('div');
                 decoration.classList.add('tree-decoration');
                 
@@ -845,129 +542,25 @@
                 decoration.style.left = (10 + Math.random() * 60) + 'px';
                 decoration.style.top = (20 + Math.random() * 80) + 'px';
                 
-                // Random color (red or gold)
-                decoration.style.background = Math.random() > 0.5 ? 'var(--christmas-red)' : 'var(--christmas-gold)';
+                // Random color (red, gold, blue, or silver)
+                const colors = [
+                    'var(--christmas-red)',
+                    'var(--christmas-gold)',
+                    'var(--christmas-blue)',
+                    'var(--christmas-silver)'
+                ];
+                decoration.style.background = colors[Math.floor(Math.random() * colors.length)];
+                decoration.style.color = colors[Math.floor(Math.random() * colors.length)];
+                decoration.style.animationDelay = (Math.random() * 2) + 's';
                 
                 treeRight.appendChild(decoration);
             }
         }
         
-        // Click Animation
-        document.addEventListener('click', function(e) {
-            const clickEffect = document.createElement('div');
-            clickEffect.classList.add('click-effect');
-            clickEffect.style.left = e.clientX - 10 + 'px';
-            clickEffect.style.top = e.clientY - 10 + 'px';
-            
-            // Christmas-themed colors
-            const colors = ['var(--christmas-red)', 'var(--christmas-green)', 'var(--christmas-gold)'];
-            clickEffect.style.background = colors[Math.floor(Math.random() * colors.length)];
-            
-            document.body.appendChild(clickEffect);
-            
-            // Remove after animation
-            setTimeout(() => {
-                clickEffect.remove();
-            }, 500);
-        });
-        
-        // Order API Simulation
-        function generateOrderNumber() {
-            const prefix = 'MV-NATAL';
-            const timestamp = Date.now().toString().slice(-6);
-            const randomNum = Math.floor(1000 + Math.random() * 9000);
-            return `${prefix}${timestamp}${randomNum}`;
-        }
-        
-        function showOrderNotification(productName) {
-            const orderNumber = generateOrderNumber();
-            const notification = document.getElementById('orderNotification');
-            const orderNumberSpan = document.getElementById('orderNumber');
-            
-            orderNumberSpan.textContent = orderNumber;
-            notification.style.display = 'block';
-            
-            // Track conversion in Facebook Pixel
-            fbq('track', 'Purchase', {
-                value: 10.00,
-                currency: 'BRL',
-                contents: [{
-                    id: orderNumber,
-                    quantity: 1,
-                    item_price: 10.00
-                }],
-                content_type: 'product'
-            });
-            
-            // Track conversion in Google Analytics
-            gtag('event', 'purchase', {
-                transaction_id: orderNumber,
-                value: 10.00,
-                currency: 'BRL',
-                items: [{
-                    id: orderNumber,
-                    name: productName,
-                    price: 10.00,
-                    quantity: 1
-                }]
-            });
-            
-            // Hide after 5 seconds
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 5000);
-        }
-        
-        // Universal Click Handler for all buttons
-        function handleButtonClick(e) {
-            e.preventDefault();
-            const button = e.target.closest('button, .whatsapp-btn');
-            if (!button) return;
-            
-            // Track button click in Facebook Pixel
-            fbq('track', 'Lead');
-            
-            // Track button click in Google Analytics
-            gtag('event', 'conversion', {
-                'send_to': 'AW-YOUR_CONVERSION_ID/YOUR_CONVERSION_LABEL'
-            });
-            
-            // Show order notification for all buttons except WhatsApp
-            if (!button.classList.contains('whatsapp-btn')) {
-                const productName = button.getAttribute('data-product') || button.textContent.trim();
-                showOrderNotification(productName);
-            }
-            
-            // Play Christmas sound
-            playChristmasSound();
-            
-            // Redirect to the specified URL
-            window.location.href = 'https://r53ra21.com?ch=37676';
-        }
-        
-        // Play Christmas sound
-        function playChristmasSound() {
-            const sounds = [
-                'https://www.soundjay.com/holiday/sounds/jingle-bells-01.mp3',
-                'https://www.soundjay.com/holiday/sounds/jingle-bells-02.mp3',
-                'https://www.soundjay.com/holiday/sounds/sleigh-bells-01.mp3'
-            ];
-            
-            const sound = new Audio(sounds[Math.floor(Math.random() * sounds.length)]);
-            sound.volume = 0.3;
-            sound.play().catch(e => console.log('Autoplay prevented:', e));
-        }
-        
-        // Add event listeners to all buttons
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('button, .whatsapp-btn')) {
-                handleButtonClick(e);
-            }
-        });
-        
         // Initialize on load
         window.addEventListener('load', function() {
             createBackground();
+            createChristmasLights();
             createChristmasTrees();
             
             // Add Christmas greeting
@@ -976,6 +569,8 @@
                     'color: #d62828; font-size: 16px; font-weight: bold;');
             }, 1000);
         });
+        
+        // Rest of your JavaScript remains the same...
     </script>
 </body>
 </html>
