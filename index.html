@@ -9,9 +9,10 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
+            background: linear-gradient(135deg, #d4edda 0%, #f8f9fa 100%);
             overflow-x: hidden;
             position: relative;
+            min-height: 100vh;
         }
         
         /* Animated Background Elements */
@@ -56,136 +57,239 @@
         }
         
         .header {
-            background-color: #2e8b57;
+            background: linear-gradient(135deg, #2e8b57 0%, #3cb371 100%);
             color: white;
             padding: 15px;
             text-align: center;
             position: relative;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
         .logo {
-            width: 720px; /* Larger logo */
-            margin-bottom: 245px;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
         }
         
         .nav-buttons {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
+            gap: 10px;
             margin-top: 15px;
+            flex-wrap: wrap;
         }
         
         .nav-btn {
-            background-color: #3cb371;
-            color: white;
+            background: linear-gradient(135deg, #ffd700 0%, #daa520 100%);
+            color: #2e8b57;
             border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
+            padding: 12px 25px;
+            border-radius: 30px;
             font-weight: bold;
             font-size: 14px;
             cursor: pointer;
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 2px solid #f8f9fa;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.5);
+        }
+        
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255,255,255,0) 45%,
+                rgba(255,255,255,0.8) 50%,
+                rgba(255,255,255,0) 55%
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
         }
         
         .nav-btn:active {
             transform: scale(0.95);
-            background-color: #2e8b57;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         
         .product-container {
-            padding: 15px;
+            padding: 20px;
             text-align: center;
+            background-color: white;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         
         .product-image {
             width: 100%;
             max-width: 300px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             margin-bottom: 15px;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         
         .product-image:hover {
-            transform: scale(1.03);
+            transform: scale(1.03) rotate(-1deg);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
         }
         
         .product-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
-            margin: 10px 0;
+            margin: 15px 0;
+            color: #2e8b57;
         }
         
         .product-price {
-            color: #2e8b57;
-            font-size: 24px;
+            color: #d4a017;
+            font-size: 28px;
             font-weight: bold;
             margin: 10px 0;
+            display: inline-block;
         }
         
         .product-old-price {
             text-decoration: line-through;
             color: #888;
             font-size: 16px;
+            display: inline-block;
+            margin: 0 5px;
         }
         
         .discount-badge {
-            background-color: #ff6b6b;
+            background: linear-gradient(135deg, #ff6b6b 0%, #d23369 100%);
             color: white;
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
             margin-left: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
         .buy-btn {
-            background-color: #2e8b57;
-            color: white;
+            background: linear-gradient(135deg, #ffd700 0%, #daa520 100%);
+            color: #2e8b57;
             border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
+            padding: 15px 40px;
+            border-radius: 30px;
             font-weight: bold;
-            font-size: 16px;
-            margin-top: 15px;
+            font-size: 18px;
+            margin-top: 20px;
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #f8f9fa;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.5);
+        }
+        
+        .buy-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255,255,255,0) 45%,
+                rgba(255,255,255,0.8) 50%,
+                rgba(255,255,255,0) 55%
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
         }
         
         .buy-btn:active {
             transform: scale(0.95);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            padding: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 20px;
             margin-top: 20px;
         }
         
         .product-card {
             background: white;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
         
         .product-card img {
             width: 100%;
-            border-radius: 8px;
+            border-radius: 10px;
             height: 120px;
             object-fit: cover;
+            margin-bottom: 10px;
+        }
+        
+        .product-card .product-title {
+            font-size: 16px;
+            margin: 5px 0;
         }
         
         .footer {
-            background-color: #2e8b57;
+            background: linear-gradient(135deg, #2e8b57 0%, #3cb371 100%);
             color: white;
             text-align: center;
-            padding: 15px;
-            margin-top: 30px;
-            font-size: 12px;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 14px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .shipping-info {
+            color: #2e8b57;
+            font-weight: bold;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        
+        .section-title {
+            color: #2e8b57;
+            text-align: center;
+            margin: 30px 0 20px;
+            font-size: 24px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #ffd700, #daa520);
+            margin: 10px auto;
+            border-radius: 3px;
         }
     </style>
 </head>
@@ -211,11 +315,11 @@
                 <span class="product-old-price">R$50</span>
                 <span class="discount-badge">80% OFF</span>
             </div>
-            <div>Frete GRÁTIS • Parcele em 3x sem juros</div>
+            <div class="shipping-info">Frete GRÁTIS • Parcele em 3x sem juros</div>
             <button class="buy-btn" onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR AGORA</button>
             
             <div style="margin-top: 30px; text-align: left;">
-                <h3>Descrição do Produto:</h3>
+                <h3 style="color: #2e8b57; border-bottom: 2px solid #ffd700; padding-bottom: 5px;">Descrição do Produto:</h3>
                 <p>• Tênis esportivo de alta qualidade</p>
                 <p>• Material respirável e confortável</p>
                 <p>• Solado antiderrapante</p>
@@ -223,18 +327,21 @@
             </div>
         </div>
         
-        <h2 style="text-align: center; color: #2e8b57; margin-top: 30px;">OUTROS PRODUTOS EM PROMOÇÃO</h2>
+        <h2 class="section-title">OUTROS PRODUTOS EM PROMOÇÃO</h2>
         <div class="product-grid">
             <!-- Product 1 -->
             <div class="product-card">
                 <img src="https://static.netshoes.com.br/produtos/chuteira-campo-adidas-f50-league-ll-unissex/98/FBA-7723-198/FBA-7723-198_zoom1.jpg?ts=1751385231&ims=326x" alt="Tênis Adidas">
                 <div class="product-title">Adidas</div>
                 <div>
-                    <span style="color: #2e8b57; font-weight: bold;">R$10</span>
+                    <span style="color: #d4a017; font-weight: bold;">R$10</span>
                     <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background-color: #ff6b6b; color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px;">80% OFF</span>
+                    <span style="background: linear-gradient(135deg, #ff6b6b 0%, #d23369 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
                 </div>
-                <button style="background-color: #3cb371; color: white; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 8px; font-size: 12px; cursor: pointer;" onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
+                <button style="background: linear-gradient(135deg, #ffd700 0%, #daa520 100%); color: #2e8b57; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 10px; font-size: 12px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s;" 
+                        onmousedown="this.style.transform='scale(0.95)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.1)';" 
+                        onmouseup="this.style.transform='scale(1)'; this.style.boxShadow='0 2px 5px rgba(0,0,0,0.1)';"
+                        onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
             </div>
             
             <!-- Product 2 -->
@@ -242,11 +349,14 @@
                 <img src="https://static.netshoes.com.br/produtos/chuteira-nike-beco-2-society/28/SGL-036R-028/SGL-036R-028_zoom1.jpg?ts=1748860421&ims=326x" alt="Tênis Nike">
                 <div class="product-title">Nike</div>
                 <div>
-                    <span style="color: #2e8b57; font-weight: bold;">R$10</span>
+                    <span style="color: #d4a017; font-weight: bold;">R$10</span>
                     <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background-color: #ff6b6b; color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px;">80% OFF</span>
+                    <span style="background: linear-gradient(135deg, #ff6b6b 0%, #d23369 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
                 </div>
-                <button style="background-color: #3cb371; color: white; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 8px; font-size: 12px; cursor: pointer;" onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
+                <button style="background: linear-gradient(135deg, #ffd700 0%, #daa520 100%); color: #2e8b57; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 10px; font-size: 12px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s;" 
+                        onmousedown="this.style.transform='scale(0.95)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.1)';" 
+                        onmouseup="this.style.transform='scale(1)'; this.style.boxShadow='0 2px 5px rgba(0,0,0,0.1)';"
+                        onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
             </div>
             
             <!-- Product 3 -->
@@ -254,11 +364,14 @@
                 <img src="https://static.netshoes.com.br/produtos/tenis-olympikus-corre-4/42/2I3-0603-542/2I3-0603-542_zoom1.jpg?ts=1741775013&ims=326x" alt="Tênis Olympikus">
                 <div class="product-title">Olympikus</div>
                 <div>
-                    <span style="color: #2e8b57; font-weight: bold;">R$10</span>
+                    <span style="color: #d4a017; font-weight: bold;">R$10</span>
                     <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background-color: #ff6b6b; color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px;">80% OFF</span>
+                    <span style="background: linear-gradient(135deg, #ff6b6b 0%, #d23369 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
                 </div>
-                <button style="background-color: #3cb371; color: white; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 8px; font-size: 12px; cursor: pointer;" onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
+                <button style="background: linear-gradient(135deg, #ffd700 0%, #daa520 100%); color: #2e8b57; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 10px; font-size: 12px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s;" 
+                        onmousedown="this.style.transform='scale(0.95)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.1)';" 
+                        onmouseup="this.style.transform='scale(1)'; this.style.boxShadow='0 2px 5px rgba(0,0,0,0.1)';"
+                        onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
             </div>
             
             <!-- Product 4 -->
@@ -266,11 +379,14 @@
                 <img src="https://static.netshoes.com.br/produtos/tenis-de-corrida-feminino-mizuno-wave-frontier-15/98/2FV-0555-198/2FV-0555-198_zoom1.jpg?ts=1722270368&ims=326x" alt="Tênis Mizuno">
                 <div class="product-title">Mizuno</div>
                 <div>
-                    <span style="color: #2e8b57; font-weight: bold;">R$10</span>
+                    <span style="color: #d4a017; font-weight: bold;">R$10</span>
                     <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background-color: #ff6b6b; color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px;">80% OFF</span>
+                    <span style="background: linear-gradient(135deg, #ff6b6b 0%, #d23369 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
                 </div>
-                <button style="background-color: #3cb371; color: white; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 8px; font-size: 12px; cursor: pointer;" onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
+                <button style="background: linear-gradient(135deg, #ffd700 0%, #daa520 100%); color: #2e8b57; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 10px; font-size: 12px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s;" 
+                        onmousedown="this.style.transform='scale(0.95)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.1)';" 
+                        onmouseup="this.style.transform='scale(1)'; this.style.boxShadow='0 2px 5px rgba(0,0,0,0.1)';"
+                        onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
             </div>
             
             <!-- Product 5 -->
@@ -278,11 +394,14 @@
                 <img src="https://static.netshoes.com.br/produtos/tenis-asics-dynablast-5-feminino/18/2FW-2952-818/2FW-2952-818_zoom1.jpg?ts=1739874812&ims=326x" alt="Tênis Asics">
                 <div class="product-title">Asics</div>
                 <div>
-                    <span style="color: #2e8b57; font-weight: bold;">R$10</span>
+                    <span style="color: #d4a017; font-weight: bold;">R$10</span>
                     <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background-color: #ff6b6b; color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px;">80% OFF</span>
+                    <span style="background: linear-gradient(135deg, #ff6b6b 0%, #d23369 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
                 </div>
-                <button style="background-color: #3cb371; color: white; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 8px; font-size: 12px; cursor: pointer;" onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
+                <button style="background: linear-gradient(135deg, #ffd700 0%, #daa520 100%); color: #2e8b57; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 10px; font-size: 12px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s;" 
+                        onmousedown="this.style.transform='scale(0.95)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.1)';" 
+                        onmouseup="this.style.transform='scale(1)'; this.style.boxShadow='0 2px 5px rgba(0,0,0,0.1)';"
+                        onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
             </div>
             
             <!-- Product 6 -->
@@ -290,11 +409,14 @@
                 <img src="https://static.netshoes.com.br/produtos/tenis-infantil-puma-caven-20-p/93/2I3-9897-793/2I3-9897-793_zoom1.jpg?ts=1743699501&ims=326x" alt="Tênis Puma">
                 <div class="product-title">Puma</div>
                 <div>
-                    <span style="color: #2e8b57; font-weight: bold;">R$10</span>
+                    <span style="color: #d4a017; font-weight: bold;">R$10</span>
                     <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background-color: #ff6b6b; color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px;">80% OFF</span>
+                    <span style="background: linear-gradient(135deg, #ff6b6b 0%, #d23369 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
                 </div>
-                <button style="background-color: #3cb371; color: white; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 8px; font-size: 12px; cursor: pointer;" onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
+                <button style="background: linear-gradient(135deg, #ffd700 0%, #daa520 100%); color: #2e8b57; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 10px; font-size: 12px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s;" 
+                        onmousedown="this.style.transform='scale(0.95)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.1)';" 
+                        onmouseup="this.style.transform='scale(1)'; this.style.boxShadow='0 2px 5px rgba(0,0,0,0.1)';"
+                        onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
             </div>
         </div>
         
@@ -333,19 +455,25 @@
             }
         }
         
-        // Touch animations
-        document.querySelectorAll('.nav-btn, .buy-btn').forEach(btn => {
-            btn.addEventListener('touchstart', function() {
-                this.style.transform = 'scale(0.95)';
-            });
-            
-            btn.addEventListener('touchend', function() {
-                this.style.transform = 'scale(1)';
-            });
-        });
-        
         // Initialize background on load
         window.addEventListener('load', createBackground);
+        
+        // Add ripple effect to buttons
+        document.querySelectorAll('.nav-btn, .buy-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // Ripple effect
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                ripple.style.left = (e.clientX - e.target.getBoundingClientRect().left) + 'px';
+                ripple.style.top = (e.clientY - e.target.getBoundingClientRect().top) + 'px';
+                this.appendChild(ripple);
+                
+                // Remove ripple after animation
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
     </script>
 </body>
 </html>
