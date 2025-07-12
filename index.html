@@ -4,6 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moda Verde - Promoção Exclusiva</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Moda Verde - Loja online de tênis esportivos com até 80% OFF. Frete grátis e parcelamento em até 3x sem juros.">
+    <meta property="og:title" content="Moda Verde - Promoção Exclusiva">
+    <meta property="og:description" content="Tênis esportivos com até 80% OFF. Frete grátis para todo Brasil!">
+    <meta property="og:image" content="https://iili.io/FMxs38b.png">
+    <meta property="og:url" content="https://modaverde.com.br">
+    <meta property="og:type" content="website">
+    
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
     <style>
         :root {
             --gold: #ffd700;
@@ -374,6 +410,27 @@
                 opacity: 0;
             }
         }
+        
+        /* Address Section */
+        .address-section {
+            background-color: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .address-title {
+            color: var(--green);
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .address-text {
+            color: #555;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -496,6 +553,17 @@
             </div>
         </div>
         
+        <!-- Address Section -->
+        <div class="address-section">
+            <h3 class="address-title">Nossa Loja Física</h3>
+            <p class="address-text">
+                Rua José Bernardo Pinto, 333 - Vila Guilherme<br>
+                São Paulo - SP, 02055-000<br>
+                Brazil<br>
+                Telefone: (11) 1234-5678
+            </p>
+        </div>
+        
         <div class="footer">
             © 2014-2025 Moda Verde - Todos os direitos reservados
         </div>
@@ -565,6 +633,31 @@
             orderNumberSpan.textContent = orderNumber;
             notification.style.display = 'block';
             
+            // Track conversion in Facebook Pixel
+            fbq('track', 'Purchase', {
+                value: 10.00,
+                currency: 'BRL',
+                contents: [{
+                    id: orderNumber,
+                    quantity: 1,
+                    item_price: 10.00
+                }],
+                content_type: 'product'
+            });
+            
+            // Track conversion in Google Analytics
+            gtag('event', 'purchase', {
+                transaction_id: orderNumber,
+                value: 10.00,
+                currency: 'BRL',
+                items: [{
+                    id: orderNumber,
+                    name: productName,
+                    price: 10.00,
+                    quantity: 1
+                }]
+            });
+            
             // Hide after 5 seconds
             setTimeout(() => {
                 notification.style.display = 'none';
@@ -576,6 +669,14 @@
             e.preventDefault();
             const button = e.target.closest('button, .whatsapp-btn');
             if (!button) return;
+            
+            // Track button click in Facebook Pixel
+            fbq('track', 'Lead');
+            
+            // Track button click in Google Analytics
+            gtag('event', 'conversion', {
+                'send_to': 'AW-YOUR_CONVERSION_ID/YOUR_CONVERSION_LABEL'
+            });
             
             // Show order notification for all buttons except WhatsApp
             if (!button.classList.contains('whatsapp-btn')) {
