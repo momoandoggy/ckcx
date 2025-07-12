@@ -10,6 +10,49 @@
             margin: 0;
             padding: 0;
             background-color: #f5f5f5;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Animated Background Elements */
+        .snow, .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .snow {
+            width: 8px;
+            height: 8px;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+        
+        .star {
+            width: 3px;
+            height: 3px;
+            animation: twinkle 2s infinite alternate;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        
+        @keyframes twinkle {
+            to {
+                opacity: 0.3;
+                transform: scale(1.5);
+            }
+        }
+        
+        /* Main Content */
+        .content {
+            position: relative;
+            z-index: 2;
         }
         
         .header {
@@ -22,7 +65,7 @@
         }
         
         .logo {
-            width: 120px;
+            width: 180px; /* Larger logo */
             margin-bottom: 10px;
         }
         
@@ -36,7 +79,7 @@
             background-color: #3cb371;
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 20px;
             font-weight: bold;
             font-size: 14px;
@@ -60,6 +103,11 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+        
+        .product-image:hover {
+            transform: scale(1.03);
         }
         
         .product-title {
@@ -108,6 +156,29 @@
             transform: scale(0.95);
         }
         
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .product-card img {
+            width: 100%;
+            border-radius: 8px;
+            height: 120px;
+            object-fit: cover;
+        }
+        
         .footer {
             background-color: #2e8b57;
             color: white;
@@ -119,40 +190,149 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <img src="https://newsbytes.ph/wp-content/uploads/2025/04/Shopee-Mall.jpeg" alt="Moda Verde" class="logo">
-        <div class="nav-buttons">
-            <button class="nav-btn" onclick="window.location.href='https://r53ra21.com?ch=37676'">LOGIN</button>
-            <button class="nav-btn" onclick="window.location.href='https://r53ra21.com?ch=37676'">CADASTRE-SE</button>
-            <button class="nav-btn" onclick="window.location.href='https://r53ra21.com?ch=37676'">BÔNUS AGORA!</button>
-        </div>
-    </div>
+    <!-- Animated Background Elements -->
+    <div id="background-elements"></div>
     
-    <div class="product-container">
-        <img src="https://example.com/sepatu.jpg" alt="Tênis Esportivo" class="product-image">
-        <div class="product-title">Tênis Esportivo Premium</div>
-        <div>
-            <span class="product-price">R$10</span>
-            <span class="product-old-price">R$50</span>
-            <span class="discount-badge">80% OFF</span>
+    <div class="content">
+        <div class="header">
+            <img src="https://w7.pngwing.com/pngs/640/479/png-transparent-shopee-application-icon-shopee-indonesia-discounts-and-allowances-coupon-shopping-e-commerce-shopee-text-retail-orange.png" alt="Moda Verde" class="logo">
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="window.location.href='https://r53ra21.com?ch=37676'">LOGIN</button>
+                <button class="nav-btn" onclick="window.location.href='https://r53ra21.com?ch=37676'">CADASTRE-SE</button>
+                <button class="nav-btn" onclick="window.location.href='https://r53ra21.com?ch=37676'">BÔNUS AGORA!</button>
+            </div>
         </div>
-        <div>Frete GRÁTIS • Parcele em 3x sem juros</div>
-        <button class="buy-btn" onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR AGORA</button>
         
-        <div style="margin-top: 30px; text-align: left;">
-            <h3>Descrição do Produto:</h3>
-            <p>• Tênis esportivo de alta qualidade</p>
-            <p>• Material respirável e confortável</p>
-            <p>• Solado antiderrapante</p>
-            <p>• Disponível em vários tamanhos</p>
+        <div class="product-container">
+            <img src="https://static.netshoes.com.br/produtos/chuteira-campo-puma-rapido-iii-unissex/72/PI3-7165-172/PI3-7165-172_zoom1.jpg?ts=1748873835&ims=326x" alt="Chuteiras de futebol" class="product-image">
+            <div class="product-title">Tênis Esportivo Premium</div>
+            <div>
+                <span class="product-price">R$10</span>
+                <span class="product-old-price">R$50</span>
+                <span class="discount-badge">80% OFF</span>
+            </div>
+            <div>Frete GRÁTIS • Parcele em 3x sem juros</div>
+            <button class="buy-btn" onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR AGORA</button>
+            
+            <div style="margin-top: 30px; text-align: left;">
+                <h3>Descrição do Produto:</h3>
+                <p>• Tênis esportivo de alta qualidade</p>
+                <p>• Material respirável e confortável</p>
+                <p>• Solado antiderrapante</p>
+                <p>• Disponível em vários tamanhos</p>
+            </div>
         </div>
-    </div>
-    
-    <div class="footer">
-        © 2023 Moda Verde - Todos os direitos reservados
+        
+        <h2 style="text-align: center; color: #2e8b57; margin-top: 30px;">OUTROS PRODUTOS EM PROMOÇÃO</h2>
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="https://static.netshoes.com.br/produtos/tenis-adidas-coreracer-masculino/26/2IC-4368-026/2IC-4368-026_zoom1.jpg" alt="Tênis Adidas">
+                <div class="product-title">Tênis Adidas</div>
+                <div>
+                    <span style="color: #2e8b57; font-weight: bold;">R$10</span>
+                    <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
+                    <span style="background-color: #ff6b6b; color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px;">80% OFF</span>
+                </div>
+                <button style="background-color: #3cb371; color: white; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 8px; font-size: 12px; cursor: pointer;" onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="https://static.netshoes.com.br/produtos/tenis-nike-revolution-6-next-nature-masculino/26/2IC-8820-026/2IC-8820-026_zoom1.jpg" alt="Tênis Nike">
+                <div class="product-title">Tênis Nike</div>
+                <div>
+                    <span style="color: #2e8b57; font-weight: bold;">R$10</span>
+                    <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
+                    <span style="background-color: #ff6b6b; color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px;">80% OFF</span>
+                </div>
+                <button style="background-color: #3cb371; color: white; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 8px; font-size: 12px; cursor: pointer;" onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="https://static.netshoes.com.br/produtos/tenis-olympikus-attract-masculino/06/D24-1988-006/D24-1988-006_zoom1.jpg" alt="Tênis Olympikus">
+                <div class="product-title">Tênis Olympikus</div>
+                <div>
+                    <span style="color: #2e8b57; font-weight: bold;">R$10</span>
+                    <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
+                    <span style="background-color: #ff6b6b; color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px;">80% OFF</span>
+                </div>
+                <button style="background-color: #3cb371; color: white; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 8px; font-size: 12px; cursor: pointer;" onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <img src="https://static.netshoes.com.br/produtos/tenis-mizuno-wave-fang-rv-masculino/06/D24-2141-006/D24-2141-006_zoom1.jpg" alt="Tênis Mizuno">
+                <div class="product-title">Tênis Mizuno</div>
+                <div>
+                    <span style="color: #2e8b57; font-weight: bold;">R$10</span>
+                    <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
+                    <span style="background-color: #ff6b6b; color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px;">80% OFF</span>
+                </div>
+                <button style="background-color: #3cb371; color: white; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 8px; font-size: 12px; cursor: pointer;" onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
+            </div>
+            
+            <!-- Product 5 -->
+            <div class="product-card">
+                <img src="https://static.netshoes.com.br/produtos/tenis-asics-gel-rocket-10-masculino/06/D24-2142-006/D24-2142-006_zoom1.jpg" alt="Tênis Asics">
+                <div class="product-title">Tênis Asics</div>
+                <div>
+                    <span style="color: #2e8b57; font-weight: bold;">R$10</span>
+                    <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
+                    <span style="background-color: #ff6b6b; color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px;">80% OFF</span>
+                </div>
+                <button style="background-color: #3cb371; color: white; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 8px; font-size: 12px; cursor: pointer;" onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
+            </div>
+            
+            <!-- Product 6 -->
+            <div class="product-card">
+                <img src="https://static.netshoes.com.br/produtos/tenis-puma-smash-v2-unissex/06/3ZP-0001-006/3ZP-0001-006_zoom1.jpg" alt="Tênis Puma">
+                <div class="product-title">Tênis Puma</div>
+                <div>
+                    <span style="color: #2e8b57; font-weight: bold;">R$10</span>
+                    <span style="text-decoration: line-through; color: #888; font-size: 12px;">R$50</span>
+                    <span style="background-color: #ff6b6b; color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px;">80% OFF</span>
+                </div>
+                <button style="background-color: #3cb371; color: white; border: none; padding: 8px 15px; border-radius: 15px; margin-top: 8px; font-size: 12px; cursor: pointer;" onclick="window.location.href='https://r53ra21.com?ch=37676'">COMPRAR</button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            © 2023 Moda Verde - Todos os direitos reservados
+        </div>
     </div>
     
     <script>
+        // Create animated background elements
+        function createBackground() {
+            const container = document.getElementById('background-elements');
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            // Create snowflakes
+            for (let i = 0; i < 50; i++) {
+                const snow = document.createElement('div');
+                snow.classList.add('snow');
+                snow.style.left = Math.random() * width + 'px';
+                snow.style.top = -10 + 'px';
+                snow.style.animationDuration = 5 + Math.random() * 10 + 's';
+                snow.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(snow);
+            }
+            
+            // Create stars
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = Math.random() * width + 'px';
+                star.style.top = Math.random() * height + 'px';
+                star.style.animationDuration = 1 + Math.random() * 3 + 's';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(star);
+            }
+        }
+        
         // Touch animations
         document.querySelectorAll('.nav-btn, .buy-btn').forEach(btn => {
             btn.addEventListener('touchstart', function() {
@@ -163,6 +343,9 @@
                 this.style.transform = 'scale(1)';
             });
         });
+        
+        // Initialize background on load
+        window.addEventListener('load', createBackground);
     </script>
 </body>
 </html>
